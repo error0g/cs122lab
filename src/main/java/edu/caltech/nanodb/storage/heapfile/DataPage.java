@@ -597,8 +597,9 @@ public class DataPage {
             throw new IllegalArgumentException("Page only has " + numSlots +
                 " slots, but slot " + slot + " was requested for deletion.");
         }
-
-        // TODO:  Complete this implementation.
-        throw new UnsupportedOperationException("TODO:  Implement!");
+        int slotValue = getSlotValue(dbPage, slot);
+        int tupleLength = getTupleLength(dbPage, slot);
+        deleteTupleDataRange(dbPage, slotValue, tupleLength);
+        setSlotValue(dbPage, slot, EMPTY_SLOT);
     }
 }
